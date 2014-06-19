@@ -1,87 +1,31 @@
 <!doctype html>
 <html>
+
 <head>
   <title>What Is Alan Eating for Lunch Today?</title>
-  
+  <link href='http://fonts.googleapis.com/css?family=Arimo:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" id="jquery"></script>
-   
-
-  <script type="text/javascript">
-  
-    var query = 'prosperity dumpling';
-
-    var google = {
-      queryDb: function() {
-        var ssUrl = 'https://spreadsheets.google.com/feeds/list/1w6ZWjyqVbbbs0MOUEW6qAUNhx4uG5Am_6XyvD9U016A/od6/public/basic?hl=en_US&alt=json';
-        $.getJSON(ssUrl, function(data){
-          // row 2 (first row below headers) corresponds to index 0
-          console.log(data.feed.entry[0].title.$t);
-          console.log(data.feed.entry[0].content.$t);
-        });
-      }
-    }
-
-    var foursquare = {
-      clientId: 'BC0GH4ZVOGO23OQAFJDB1BGGRBTZMIWK1LGHQCJQZPRLSC32',
-      clientSecret: 'CPHAC0KIOU3R3HSBOK3SMNRSW1URCWTCCVENIZ52DJ5ZR0G5',
-      
-      // search params
-      momentLat: 40.720040,
-      momentLong: -74.000189,
-      searchRadius: 800,
-      searchLimit: 20,
-      foursquareVersion: 20140612,
-
-      // category: food
-      // https://developer.foursquare.com/categorytree
-      category: '4d4b7105d754a06374d81259',
-
-      search: function(query) {
-        // url reference:
-        // https://api.foursquare.com/v2/venues/search?ll=40.7,-74&client_id=CLIENT_ID&client_secret=CLIENT_SECRET&v=YYYYMMDD
-        // https://api.foursquare.com/v2/venues/search?ll=40.720040,-74.000189&radius=800&query=dumplings&categoryId=4d4b7105d754a06374d81259&limit=20&intent=browse&client_id=BC0GH4ZVOGO23OQAFJDB1BGGRBTZMIWK1LGHQCJQZPRLSC32&client_secret=CPHAC0KIOU3R3HSBOK3SMNRSW1URCWTCCVENIZ52DJ5ZR0G5&v=20140612
-
-        var url = 'https://api.foursquare.com/v2/venues/search';
-            url += '?query=' + query;
-            url += '&categoryId=' + this.category;
-            url += '&ll=' + this.momentLat + ',' + this.momentLong;
-            url += '&radius=' + this.searchRadius;
-            url += '&limit=' + this.searchLimit;
-            url += '&intent=' + "browse";
-            url += '&client_id=' + this.clientId;
-            url += '&client_secret=' + this.clientSecret;
-            url += '&v=' + this.foursquareVersion;
-        console.log('url: ' + url);
-
-        $.getJSON(url, function(data){
-          console.log("getting data...");
-          var searchResults = data.response.venues;
-          var resultTemplate = '<ul id="searchResults"></ul>';
-          $('body').append(resultTemplate);
-          $.each(searchResults, function(index, value) {
-            // console.log(value);
-            var resultItem = '<li><a class="searchItem" data-venueid="' + value.id + '" href="http://foursquare.com/venue/' +value.id + '">' + value.name + '</a></i>';
-            $('#searchResults').append(resultItem);
-          });
-        });
-
-      },
-
-      init: function() {
-        this.search(query);
-      }
-    }
-
-$(document).ready(function() {
-      // foursquare.init();
-      google.queryDb();
-    });
-  </script>
- 
+  <!-- <script type="text/javascript" src="js/jquery.textfill.js"></script> -->
 </head>
-<body>
-  <h1>hello</h1>
+
+<body class="init">
+
+    <div class="content">
+      <h1>Lorem ipsum dolor <br> sit amet, alii minimum</h1>
+      <!-- <h1>what is alan eating<br>for lunch today?</h1> -->
+      <h2 id="suggestion"></h2>
+    </div>
+
+    <div class="veg-mode"></div>
+    <div class="pk-mode"></div>
+  
   <!-- <div style="width: 100%; height: 100%;" id="map_canvas"></div> -->
   <!--add attribution please https://developer.foursquare.com/docs/venues/links -->
+
+  <script type="text/javascript" src="js/script.js"></script>
+  <script type="text/javascript" src="js/foursquare.js"></script>
+
 </body>
+
 </html>  
