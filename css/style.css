@@ -49,9 +49,12 @@ table {
 
 /*========================================================*/
 
-html {
+html, body {
 	width: 100%;
 	height: 100%;
+}
+
+html {
 	font-size: 5em;
 }
 
@@ -70,17 +73,37 @@ html {
 	/*background-color: #bbb;*/
 }
 
-html {
-	cursor: pointer;
+.mainContent {
+	/*opacity: 1;*/
+}
+.alertContent {
+	display: none;
+	background-color: white;
+	color: black;
 }
 
 .init {
-	background-color: #aaa;
+	background-color: #4488dd;
+	color: #000;
 	font-family: 'Arimo', sans-serif;
 	font-weight: 700;
 }
+.alert {
+	background-color: blue;
+	color: #fff;
+}
 
-.veg-mode {
+.pk-mode {
+	background-color: #000;
+	color: #fff;
+	font-family: 'Helvetica Neue', 'Helvetica', sans-serif;
+}
+
+.suggestion, .veg-click, .pk-click {
+	cursor: pointer;
+}
+
+.veg-click {
 	position:absolute;
 	top:0;
 	right:0;
@@ -91,7 +114,7 @@ html {
 	border-color: transparent #558833 transparent transparent;
 }
 
-.pk-mode {
+.pk-click {
 	position:absolute;
 	bottom:0;
 	right:0;

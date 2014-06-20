@@ -1,5 +1,10 @@
 var ssId = '1w6ZWjyqVbbbs0MOUEW6qAUNhx4uG5Am_6XyvD9U016A';
 var ssUrl = 'https://spreadsheets.google.com/feeds/list/' + ssId + '/od6/public/values?&alt=json';
+var numEntries = 25;
+console.log(numEntries);
+
+var pkMode = 0;
+var veganMode = 0;
 
 function queryDb(index) {
   
@@ -14,25 +19,83 @@ function queryDb(index) {
       venue: data.feed.entry[index].gsx$venue.$t
     };
 
+    numEntries = data.feed.entry[0].gsx$count.$t;
+    console.log(numEntries);
+
     var newSuggestion = resultObject.venue;
-    $('#suggestion').html(newSuggestion);
-    $('#suggestion').append('<a href="http://foursquare.com/venue/' +resultObject.idNum + '"><div class="venueLink">View on Foursquare</div></a>');
+    $('.suggestion').html(newSuggestion);
+    $('.suggestion').append('<a href="http://foursquare.com/venue/' +resultObject.idNum + '"><div class="venueLink">View on Foursquare</div></a>');
   });
 }
 
 $(document).ready(function() {
   // run sample query (parameters in foursquare.js)
   // foursquare.init();
-  var numEntries = 5;
-  var randEntry = Math.floor(Math.random() * numEntries);
+  // var numEntries = 5;
+  var randEntry = 1 + Math.floor(Math.random() * numEntries);
   queryDb(randEntry);
 
-  $('html').click(function() {
-    randEntry = Math.floor(Math.random() * numEntries);
+  $('.suggestion').click(function() {
+    $('.suggestion').html('');
+    randEntry = 1 + Math.floor(Math.random() * numEntries);
     queryDb(randEntry);
   });
 
-  $('.veg').click(function() {
-    console.log("VEGAN MODE!!!!!");
+  $('.veg-click').click(function() {
+    
+    if (veganMode === 0) {
+      veganMode = 1;
+      console.log('VEGAN MODE!!!!!');
+      $('.alertContent h1').html('VEGAN MODE!!!!');
+      // $('.mainContent').css('opacity', 0);
+      // $('body').addClass('vegan-mode');
+      $('.alertContent').css('display', 'block');
+      // setTimeout(function() {
+      //   $('.mainContent').css('opacity', 1);
+      //   $('.alertContent').css('opacity', 0);
+      // }, 1000);
+      // turn on a query select and re-search
+    } else {
+      veganMode = 0;
+      console.log('vegan mode deactivated');
+      $('.alertContent h1').html('vegan mode deactivated');
+      $('.mainContent').css('opacity', 0);
+      $('body').removeClass('vegan-mode');
+      $('.alertContent').css('opacity', 1);
+      setTimeout(function() {
+        $('.mainContent').css('opacity', 1);
+        $('.alertContent').css('opacity', 0);
+      }, 1000);
+      // turn off a query select and re-search
+    }
+    
+
   });
+
+  $('.pk-click').click(function() {
+    if (pkMode === 0) {
+      pkMode = 1;
+      console.log('PK mode');
+      $('.alertContent h1').html('PK MODE!!!!');
+      $('.mainContent').css('opacity', 0);
+      $('body').addClass('pk-mode');
+      $('.alertContent').css('opacity', 1);
+      setTimeout(function() {
+        $('.mainContent').css('opacity', 1);
+        $('.alertContent').css('opacity', 0);
+      }, 1000);
+    } else {
+      pkMode = 0;
+      console.log('PK mode deactivated');
+      $('.alertContent h1').html('PK mode deactivated');
+      $('.mainContent').css('opacity', 0);
+      $('body').removeClass('pk-mode');
+      $('.alertContent').css('opacity', 1);
+      setTimeout(function() {
+        $('.mainContent').css('opacity', 1);
+        $('.alertContent').css('opacity', 0);
+      }, 1000);
+    }
+  });
+
 });
