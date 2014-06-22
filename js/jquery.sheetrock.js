@@ -1,4 +1,6 @@
 /*
+ * A slightly hacked version of...
+ *
  * jQuery Sheetrock v0.1.10
  * Quickly connect to, query, and lazy-load data from Google Spreadsheets
  * Requires jQuery >=1.6

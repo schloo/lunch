@@ -99,7 +99,7 @@ body {
 }
 
 /* hack to circumvent sheetrock output */
-#sheetrock {
+.invisible {
 	display: none;
 }
 
@@ -150,7 +150,8 @@ a {
   font-size: 88px;
   line-height: 82px;
   text-transform: uppercase;
-  letter-spacing: 3px
+  letter-spacing: 3px;
+  cursor: default;
 }
 
 .suggestion {
@@ -160,6 +161,7 @@ a {
   font-size: 72px;
   line-height: 70px;
   font-weight: 400;
+  min-width: 350px;
   background: url(../assets/iconmonstr-refresh-icon.svg);
   background-size: contain;
   background-position: center center;
@@ -179,6 +181,13 @@ a {
 	margin-top: -5%;
 }
 
+.doge {
+  position: absolute;
+  width: 400px;
+  right: 0;
+  bottom: 0;
+}
+
 .icon {
 	display: inline-block;
 }
@@ -196,8 +205,8 @@ a {
 }
 
 .pk-font .suggestion {
-  font-size: 62px;
-  line-height: 70px;
+  font-size: 54px;
+  line-height: 58px;
   font-weight: normal;
 }
 
@@ -205,3 +214,63 @@ a {
   font-weight: normal;
   font-size: 16px;
   line-height: 62px;
+}
+
+@media all and (max-width: 1200px) {
+  .header {
+  	font-size: 58px;
+  	line-height: 62px;
+  }
+  .suggestion {
+  	font-size: 42px;
+    line-height: 50px;
+  }
+  .doge {
+  	width: 340px;
+  }
+}
+
+@media all and (max-width: 800px) {
+  .content {
+  /*to pull content slightly up from center*/
+  margin: -20% 0 0 0;
+  }
+  .header {
+  	font-size: 48px;
+  	line-height: 52px;
+  }
+  .suggestion {
+  	font-size: 32px;
+    line-height: 40px;
+  }
+  .foursquare {
+  	font-size: 16px;
+    line-height: 50px;
+  }
+  .doge {
+  	width: 250px;
+  }
+}
+
+@media all and (max-width: 400px;) {
+  .content {
+  /*to pull content slightly up from center*/
+  margin: -25% 0 0 0;
+  }
+  .header {
+  	font-size: 28px;
+  	line-height: 32px;
+  }
+  .suggestion {
+  	font-size: 22px;
+    line-height: 30px;
+    max-width: 300px;
+  }
+  .foursquare {
+  	font-size: 14px;
+    line-height: 50px;
+  }
+  .doge {
+  	width: 100px;
+  }
+}
