@@ -105,8 +105,8 @@ body {
 	width: 0;
 	height: 0;
 	border-style: solid;
-	border-width: 0 60px 60px 0;
-	border-color: transparent #558833 transparent transparent;
+	border-width: 0 40px 40px 0;
+	border-color: transparent #fff transparent transparent;
 }
 
 .pk-click {
@@ -116,7 +116,7 @@ body {
 	width: 0;
 	height: 0;
 	border-style: solid;
-	border-width: 60px 60px 0px 0px;
+	border-width: 40px 40px 0px 0px;
 	border-color: #fff transparent transparent transparent;
 }
 
@@ -172,6 +172,10 @@ a {
 
 .alert {
 	margin-top: -5%;
+}
+
+.icon {
+	display: inline-block;
 }
 
 .pk-font {
