@@ -1,4 +1,10 @@
-/* http://meyerweb.com/eric/tools/css/reset/
+/* 
+   thanks to Manoela Ilic:
+   http://tympanus.net/codrops/2012/06/12/css-only-responsive-layout-with-smooth-transitions
+*/
+
+/* 
+   http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -52,6 +58,11 @@ table {
 
 body {
 	overflow: hidden;
+	font-family: 'Archivo Narrow', Helvetica, sans-serif;
+	font-weight: 700;
+	background-color: #4FB99F;
+	color: white;
+	transition: all 0.1s;
 }
 
 .container {
@@ -60,19 +71,7 @@ body {
 	height: 100%;
 	top: 0;
 	left: 0;
-	font-family: 'Archivo Narrow', Helvetica, sans-serif;
-	font-weight: 700;
 }
-
-/*.container:before {
-    content: '';
-    position: fixed;
-    width: 100%;
-    height: 34px;
-    background: #e23a6e;
-    z-index: 9;
-    bottom: 0;
-}*/
 
 .scroll, .panel {
 	position: relative;
@@ -90,9 +89,14 @@ body {
 }
 
 .panel{
-    background: #fff;
-    overflow: hidden;
+    /*overflow: hidden;*/
+    overflow-y: scroll;
 } 
+
+/* hack to hide scrollbar WEBKIT ONLY */
+.panel::-webkit-scrollbar {
+	width: 0 !important;
+}
 
 .veg-click {
 	position:absolute;
@@ -107,22 +111,17 @@ body {
 
 .pk-click {
 	position:absolute;
-	bottom:0;
-	right:0;
+	top:0;
+	left:0;
 	width: 0;
 	height: 0;
 	border-style: solid;
-	border-width: 0 0 60px 60px;
-	border-color: transparent transparent #fff transparent;
+	border-width: 60px 60px 0px 0px;
+	border-color: #fff transparent transparent transparent;
 }
 
-.suggestion, .link-out, .veg-click, .pk-click {
+.suggestion, .foursquare, .veg-click, .pk-click {
 	cursor: pointer;
-}
-
-#panel-2 {
-	background-color: #4FB99F;
-	color: white;
 }
 
 a {
@@ -130,12 +129,12 @@ a {
 	color: inherit;
 }
 
-.panel > h1 {
+.content {
   position: absolute;
   width: 80%;
   left: 10%;
   /*to pull content slightly up from center*/
-  margin: -15% 0 0 0;
+  margin: -18% 0 0 0;
   padding: 0;
   top: 50%; 
   text-align: center;
@@ -149,13 +148,10 @@ a {
   letter-spacing: 3px
 }
 
-.body-text {
+.suggestion {
   display: inline-block;
   margin-top: 2%;
   padding: 8% 0;
-}
-
-.suggestion {
   font-size: 72px;
   line-height: 70px;
   font-weight: 400;
@@ -165,11 +161,38 @@ a {
   background-repeat: no-repeat;
 }
 
-.link-out {
+.foursquare {
   padding: 5px 5px;
   font-weight: 400;
   font-size: 20px;
-  line-height: 42px;
+  line-height: 52px;
   background-color: white;
   color: #4FB99F;
 }
+
+.alert {
+	margin-top: -5%;
+}
+
+.pk-font {
+	font-family: 'Helvetica Neue', Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+.pk-font .header {
+  font-size: 78px;
+  line-height: 72px;
+  /*text-transform: none;*/
+  letter-spacing: 3px
+}
+
+.pk-font .suggestion {
+  font-size: 62px;
+  line-height: 70px;
+  font-weight: normal;
+}
+
+.pk-font .foursquare {
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 62px;

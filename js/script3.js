@@ -6,17 +6,13 @@ console.log(numEntries);
 var pkMode = 0;
 var veganMode = 0;
 
-var bgColors = ['112F41', '068587', '4FB99F', 'F2B134', 'ED553B'];
-var initColor = 3;
+var bgColors = ['000000', '112F41', '068587', '4FB99F', 'F2B134', 'ED553B'];
+var currentColor = 3;
 
 function queryDb(index) {
   
   $.getJSON(ssUrl, function(data){
     // index = 0 --> row 2 (array starts after header row)
-    // console.log(data.feed.entry[index].gsx$id.$t);
-    // console.log(data.feed.entry[index].gsx$venue.$t);
-    // console.log(data.feed.entry[index].gsx$vegan.$t);
-    
     var resultObject = {
       idNum: data.feed.entry[index].gsx$id.$t,
       venue: data.feed.entry[index].gsx$venue.$t
@@ -27,76 +23,81 @@ function queryDb(index) {
 
     var newSuggestion = resultObject.venue;
     $('.suggestion').html(newSuggestion);
-    $('.link-out').html('<a href="http://foursquare.com/venue/' +resultObject.idNum + '"><div class="venueLink">4sq</div></a>');
+    $('.foursquare').html('<a href="http://foursquare.com/venue/' +resultObject.idNum + '"><div class="venueLink">4sq</div></a>');
   });
 }
 
-$(document).ready(function() {
+function changeBg(colorIndex) {
+  $('body').css('background-color', '#'+bgColors[colorIndex]);
+  $('.foursquare').css('color', '#'+bgColors[colorIndex]);
+}
 
+$(document).ready(function() {
   // run sample query (parameters in foursquare.js)
   // foursquare.init();
+
   var numEntries = 5;
   var randEntry = 1 + Math.floor(Math.random() * numEntries);
   // queryDb(randEntry);
 
   $('.suggestion').click(function() {
     $('.suggestion').html('still something');
-    $('.link-out').css('visibility', 'hidden');
+    $('.foursquare').css('visibility', 'hidden');
     randEntry = 1 + Math.floor(Math.random() * numEntries);
     // queryDb(randEntry);
-    var randColor = Math.floor(Math.random() * bgColors.length);
-    $('#panel-1, #panel-2').css('background-color', '#'+bgColors[randColor]);
-    $('.link-out').css('color', '#'+bgColors[randColor]);
-    $('.link-out').css('visibility', 'visible');
+
+    if (pkMode === 0) {
+      currentColor = Math.floor(1 + Math.random() * (bgColors.length));
+      changeBg(currentColor);
+    }
+    
+    $('.foursquare').css('visibility', 'visible');
   });
 
   $('.veg-click').click(function() {
     
     if (veganMode === 0) {
       veganMode = 1;
-      console.log('VEGAN MODE!!!!!');
-      // open and close alert
-      $('.scroll').css('top', '0%');
-      // change alert messaging
-      $('#panel-1>h2').html('ACTIVATED');
+      $('.scroll').css('top', '0%'); // open and close alert
+      $('.alert').html('VEGAN MODE!!!!!'); // change alert messaging
       setTimeout(function() {
         $('.scroll').css('top', '-100%');
       }, 1000);
       // turn on a query select and re-search
     } else {
       veganMode = 0;
-      console.log('vegan mode deactivated');
-      // open and close alert
-      $('.scroll').css('top', '0%');
-      // change alert messaging
-      $('#panel-1>h2').html('DEACTIVATED');
+      $('.scroll').css('top', '0%'); // open and close alert
+      $('.alert').html('vegan mode deactivated'); // change alert messaging
       setTimeout(function() {
         $('.scroll').css('top', '-100%');
       }, 1000);
       // turn off a query select and re-search
     }
     
-
   });
 
   $('.pk-click').click(function() {
     if (pkMode === 0) {
       pkMode = 1;
-      console.log('PK mode');
-      // open and close alert
-      $('.scroll').css('top', '-200%');
-      // change alert messaging
-      $('#panel-3>h2').html('ACTIVATED');
+      setTimeout(function() { 
+        // currentColor = 0;
+        changeBg(0);
+        $('body').addClass('pk-font');
+      }, 300);
+      $('.scroll').css('top', '0%');  // open and close alert
+      $('.alert').html('PK mode!!!!'); // change alert messaging
       setTimeout(function() {
         $('.scroll').css('top', '-100%');
       }, 1000);
     } else {
       pkMode = 0;
-      console.log('PK mode deactivated');
-      // open and close alert
-      $('.scroll').css('top', '-200%');
-      // change alert messaging
-      $('#panel-3>h2').html('DEACTIVATED');
+      setTimeout(function() {
+        currentColor = 4;
+        changeBg(currentColor);
+        $('body').removeClass('pk-font');
+      }, 300);
+      $('.scroll').css('top', '-0%'); // open and close alert
+      $('.alert').html('PK mode deactivated'); // change alert messaging
       setTimeout(function() {
         $('.scroll').css('top', '-100%');
       }, 1000);
