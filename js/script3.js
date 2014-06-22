@@ -1,5 +1,6 @@
 var ssId = '1w6ZWjyqVbbbs0MOUEW6qAUNhx4uG5Am_6XyvD9U016A';
 var ssUrl = 'https://spreadsheets.google.com/feeds/list/' + ssId + '/od6/public/values?&alt=json';
+var ssUrl2 = 'https://docs.google.com/spreadsheet/ccc?key=0At3U5DRrcuOfdEpOTEh2dENXblo5Yi16SnNFelNtTkE#gid=0;';
 var numEntries = 25;
 console.log(numEntries);
 
@@ -35,6 +36,11 @@ function changeBg(colorIndex) {
 $(document).ready(function() {
   // run sample query (parameters in foursquare.js)
   // foursquare.init();
+
+  $('#statistics').sheetrock({
+    url: ssUrl2,
+    cellHandler: function() {}
+  });
 
   var numEntries = 5;
   var randEntry = 1 + Math.floor(Math.random() * numEntries);
