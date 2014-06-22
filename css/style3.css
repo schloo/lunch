@@ -60,7 +60,7 @@ body {
 	height: 100%;
 	top: 0;
 	left: 0;
-	font-family: 'Arimo', sans-serif;
+	font-family: 'Archivo Narrow', Helvetica, sans-serif;
 	font-weight: 700;
 }
 
@@ -113,37 +113,63 @@ body {
 	height: 0;
 	border-style: solid;
 	border-width: 0 0 60px 60px;
-	border-color: transparent transparent #000 transparent;
+	border-color: transparent transparent #fff transparent;
 }
 
-.suggestion, .veg-click, .pk-click {
+.suggestion, .link-out, .veg-click, .pk-click {
 	cursor: pointer;
+}
+
+#panel-2 {
+	background-color: #4FB99F;
+	color: white;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
 }
 
 .panel > h1 {
   position: absolute;
   width: 80%;
   left: 10%;
+  /*to pull content slightly up from center*/
   margin: -15% 0 0 0;
   padding: 0;
-  top: 50%;
-  font-size: 54px;
-  line-height: 50px;
-  text-transform: uppercase;
+  top: 50%; 
   text-align: center;
   /*-webkit-backface-visibility: hidden;*/
 }
 
-.panel > h2 {
-  position: absolute;
-  width: 50%;
-  left: 25%;
-  top: 50%;
-  margin: 0 0 0 0;
-  padding: 0;
-  /*z-index: 2;*/
-  font-size: 40px;
-  line-height: 52px;
-  text-align: center;
-  /*-webkit-backface-visibility: hidden;*/
+.header {
+  font-size: 88px;
+  line-height: 82px;
+  text-transform: uppercase;
+  letter-spacing: 3px
+}
+
+.body-text {
+  display: inline-block;
+  margin-top: 2%;
+  padding: 8% 0;
+}
+
+.suggestion {
+  font-size: 72px;
+  line-height: 70px;
+  font-weight: 400;
+  background: url(../assets/iconmonstr-refresh-icon.svg);
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.link-out {
+  padding: 5px 5px;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 42px;
+  background-color: white;
+  color: #4FB99F;
 }

@@ -6,6 +6,9 @@ console.log(numEntries);
 var pkMode = 0;
 var veganMode = 0;
 
+var bgColors = ['112F41', '068587', '4FB99F', 'F2B134', 'ED553B'];
+var initColor = 3;
+
 function queryDb(index) {
   
   $.getJSON(ssUrl, function(data){
@@ -24,7 +27,7 @@ function queryDb(index) {
 
     var newSuggestion = resultObject.venue;
     $('.suggestion').html(newSuggestion);
-    $('.suggestion').append('<a href="http://foursquare.com/venue/' +resultObject.idNum + '"><div class="venueLink">View on Foursquare</div></a>');
+    $('.link-out').html('<a href="http://foursquare.com/venue/' +resultObject.idNum + '"><div class="venueLink">4sq</div></a>');
   });
 }
 
@@ -32,14 +35,19 @@ $(document).ready(function() {
 
   // run sample query (parameters in foursquare.js)
   // foursquare.init();
-  // var numEntries = 5;
+  var numEntries = 5;
   var randEntry = 1 + Math.floor(Math.random() * numEntries);
-  queryDb(randEntry);
+  // queryDb(randEntry);
 
   $('.suggestion').click(function() {
-    $('.suggestion').html('');
+    $('.suggestion').html('still something');
+    $('.link-out').css('visibility', 'hidden');
     randEntry = 1 + Math.floor(Math.random() * numEntries);
-    queryDb(randEntry);
+    // queryDb(randEntry);
+    var randColor = Math.floor(Math.random() * bgColors.length);
+    $('#panel-1, #panel-2').css('background-color', '#'+bgColors[randColor]);
+    $('.link-out').css('color', '#'+bgColors[randColor]);
+    $('.link-out').css('visibility', 'visible');
   });
 
   $('.veg-click').click(function() {
