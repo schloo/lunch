@@ -98,6 +98,11 @@ body {
 	width: 0 !important;
 }
 
+/* hack to circumvent sheetrock output */
+#sheetrock {
+	display: none;
+}
+
 .veg-click {
 	position:absolute;
 	top:0;

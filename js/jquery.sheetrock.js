@@ -642,29 +642,29 @@
     return (cell && _has(cell, 'p') && _has(cell.p, 'style')) ? cell.p.style : false;
   },
 
+  // MODIFIED
   // Default row handler: Output a row object as an HTML table row.
   _toHTML = function(row) {
-
-    // Placeholders
-    var cell, html = '',
-
-    // Use "td" for table body row, "th" for table header rows.
-    tag = (row.num) ? 'td' : 'th';
-
-    // Loop through each cell in the row.
-    for(cell in row.cells) {
-
-      // Make sure `cell` is a real object property.
-      if(_has(row.cells, cell)) {
-        // Wrap the cell value in the cell tag.
-        html += _wrapTag(row.cells[cell], tag, '');
-      }
-
+    if (row.cells.vegan === 'yes') {
+      jsonVeganArray.push(row.cells);
     }
+    jsonArray.push(row.cells);  
+      return '';
 
-    // Wrap the cells in a table row tag.
-    return _wrapTag(html, 'tr', '');
-
+    // // Placeholders
+    // var cell, html = '',
+    // // Use "td" for table body row, "th" for table header rows.
+    // tag = (row.num) ? 'td' : 'th';
+    // // Loop through each cell in the row.
+    // for(cell in row.cells) {
+    //   // Make sure `cell` is a real object property.
+    //   if(_has(row.cells, cell)) {
+    //     // Wrap the cell value in the cell tag.
+    //     html += _wrapTag(row.cells[cell], tag, '');
+    //   }
+    // }
+    // // Wrap the cells in a table row tag.
+    // return _wrapTag(html, 'tr', '');
   },
 
   // Wrap a string in tag. The style argument, if present, is populated into
