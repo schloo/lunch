@@ -72,6 +72,10 @@ $(document).ready(function() {
     $('.doge').removeClass('invisible');
     if (veganMode === 0) {
       veganMode = 1;
+      setTimeout(function() {
+        $('.veg-click').addClass('veg-click2');
+        $('.veg-click2').removeClass('veg-click');
+      }, 300);
       $('.scroll').css('top', '0%'); // open and close alert
       $('.alert').html('VEGAN MODE!!!!!'); // change alert messaging
       setTimeout(function() {
@@ -79,6 +83,10 @@ $(document).ready(function() {
       }, 1000);
     } else {
       veganMode = 0;
+      setTimeout(function() {
+        $('.veg-click2').addClass('veg-click');
+        $('.veg-click').removeClass('veg-click2');
+      }, 300);
       $('.scroll').css('top', '0%'); // open and close alert
       $('.alert').html('vegan mode deactivated'); // change alert messaging
       setTimeout(function() {
@@ -92,7 +100,7 @@ $(document).ready(function() {
     $('.doge').addClass('invisible');
     if (pkMode === 0) {
       pkMode = 1;
-      setTimeout(function() { 
+      setTimeout(function() {
         // currentColor = 0;
         changeBg(0);
         $('body').addClass('pk-font');
